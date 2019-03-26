@@ -7,6 +7,19 @@ server.use(express.json());
 server.use(helmet());
 
 // endpoints here
+const knex = require('knex');
+
+const knexConfig = {
+  client: 'sqlite3',
+  useNullAsDefault: true,
+  connection: {
+    filename: './data/lambda.sqlite3',
+  },
+  debug: true,
+};
+
+const db = knex(knexConfig);
+
 
 const port = 3300;
 server.listen(port, function() {
